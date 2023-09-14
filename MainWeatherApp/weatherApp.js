@@ -24,19 +24,12 @@ function checkWeather(submittedLocation) {
          console.log('error ${request.status} ${request.StatusText}');
       }
    }
-
-
-   // let response = fetch(submittedLocation);
-   // let data = response;
-   // populateData(data);
 };
 
 
 function populateData(data) {
    console.log(data);
-   let weatherName = document.getElementById("weatherName").innerHTML = data.location.name;
-   let weatherTemp = document.getElementById("weatherTemp").innerHTML = data.current.temp_c;
-   let weatherTemp = document.getElementById("weatherImage").innerHTML = data.current.condition.icon;
-   
-
+   document.getElementById("weatherName").innerHTML = data.location.name;
+   document.getElementById("weatherTemp").innerHTML = data.current.temp_c + "℃";
+   document.getElementById("weatherImage").src = data.current.condition.icon;
 };

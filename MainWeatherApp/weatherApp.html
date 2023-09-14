@@ -7,23 +7,21 @@
     <link rel="stylesheet" href="weatherStyles.css">
 </head>
 <body>
-    <header>
+    
+    <div id="container">
         <Nav>
             <li><a href="/index.html">Home Page</a></li>
         </Nav>
-    </header>
-
-    <div id="Body">
-        <div id="info">
+        <div id="info-container">
             <h2>Please enter the location below</h2>
             <p>Location will display the next few days of weather.</p>
+            <form id="buttons">
+                <input placeholder="location..." id="weatherInput" type="str"></input>
+                <button id="submitButton" type="button"> Submit </button>
+            </form>
         </div>
-        <form id="buttons">
-            <input placeholder="location..." id="weatherInput" type="str"></input>
-            <button id="submitButton" type="button"> Submit </button>
-        </form>
-
-        <div id="weatherReponse">
+            
+            <div id="weatherReponse">
             <h2 id=weatherName></h2>
             <p id="weatherTemp"></p>    
             <img id="weatherImage"></img>
