@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
-    <link rel="stylesheet" href="weatherStyles.css">
+    <link rel="stylesheet" href="WeatherStyles.css">
 </head>
 <body>
-    
-    <div id="container">
-        <Nav>
-            <li><a href="/index.html">Home Page</a></li>
-        </Nav>
-        <div id="info-container">
-            <h2>Please enter the location below</h2>
+    <div id="centreContainer">
+        <div id="infoContainer">
+            <h2 id="title">Please enter the location below</h2>
             <p>Location will display the next few days of weather.</p>
             <form id="buttons">
                 <input placeholder="location..." id="weatherInput" type="str"></input>
@@ -21,14 +17,11 @@
             </form>
         </div>
             
-            <div id="weatherReponse">
-            <h2 id=weatherName></h2>
-            <p id="weatherTemp"></p>    
-            <img id="weatherImage"></img>
+        <div id="weatherContainer" style="display:none;">
+            <h2 id=locationnName></h2>
+            <div id="allWeatherContainer"></div>
         </div>
     </div>
-    
-
     <!-- <footer>
         <a href="https://www.weatherapi.com/" title="Free Weather API"><img src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com" border="0"></a>
     </footer> -->

@@ -1,25 +1,55 @@
 const button = document.getElementById("submitButton");
 button.addEventListener("click", submitWeather, false);
 
-function submitWeather(event) {
-   event.preventDefault()
-   const apiUrl = "http://api.weatherapi.com/v1";
-   const apiKey = "619ffafbbae84d6baea75929231009";
-   const api = "http://api.weatherapi.com/v1/current.json?key=619ffafbbae84d6baea75929231009";
-   let weatherRequest = document.getElementById("weatherInput");
-   let submittedLocation = api + "&q=" + weatherRequest.value;
-   checkWeather(submittedLocation)
+let searchedWeather = false;
+
+function addStyles() {
+   let showWeater = document.getElementById("weatherContainer");
+   showWeater.style.display = 'block';
 };
 
-function checkWeather(submittedLocation) {
+function submitWeather(event) {
+   event.preventDefault()
+   addStyles()
+
+
+   if (searchedWeather === true) {
+      let oldWeather = document.getElementsByClassName("individualWeatherContainer")
+      while(oldWeather[0]) {
+         oldWeather[0].parentNode.removeChild(oldWeather[0])      
+      }
+      searchedWeather = false;
+   }
+   searchedWeather = true;
+   const apiUrl = "http://api.weatherapi.com/v1";
+   const apiKey = "619ffafbbae84d6baea75929231009";
+   let weatherRequest = document.getElementById("weatherInput");
+   let subLocation = weatherRequest.value;
+   console.log(subLocation)
+   checkWeather(subLocation)
+};
+
+function checkWeather(subLocation) {
+   const api = "http://api.weatherapi.com/v1/forecast.json?key=619ffafbbae84d6baea75929231009&days=5";
+   let submittedLocation = api + "&q=" + subLocation;
    let request = new XMLHttpRequest();
+
    request.open("GET", submittedLocation);
    request.send();
    request.onload = () => {
       console.log(request);
       if (request.status === 200) {
+
          let data = JSON.parse(request.response);
-         populateData(data);
+         let forcastData = data.forecast.forecastday;
+
+         console.log(forcastData);
+         document.getElementById("locationnName").innerHTML = subLocation;
+
+         for (data of forcastData) {
+            populateData(data)
+         }
+
       } else {
          console.log('error ${request.status} ${request.StatusText}');
       }
@@ -27,9 +57,32 @@ function checkWeather(submittedLocation) {
 };
 
 
+// date - Convert to day of Date
+
 function populateData(data) {
-   console.log(data);
-   document.getElementById("weatherName").innerHTML = data.location.name;
-   document.getElementById("weatherTemp").innerHTML = data.current.temp_c + "℃";
-   document.getElementById("weatherImage").src = data.current.condition.icon;
+
+   // Create the divs, and grab parent
+   let parentDiv = document.getElementById("allWeatherContainer");
+   let initialDiv = document.createElement('div');
+   let weatherTemp = document.createElement('p')
+   let weatherImage = document.createElement('img')
+
+   //grab the data
+   let weatherTempData = data.day.avgtemp_c;
+   let weatherImageData = data.day.condition.icon;
+
+   //insert the data
+   weatherTemp.innerHTML = weatherTempData;
+   weatherImage.src = weatherImageData;
+   
+   //append to the children
+   initialDiv.className='individualWeatherContainer';
+   parentDiv.appendChild(initialDiv);
+   initialDiv.appendChild(weatherTemp);
+   initialDiv.appendChild(weatherImage);
+   
+
+
+   // document.getElementById("weatherTemp").innerHTML = data.current.temp_c + "℃";
+   // document.getElementById("weatherImage").src = data.current.condition.icon;
 };
