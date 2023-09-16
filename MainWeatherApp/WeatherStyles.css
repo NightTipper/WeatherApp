@@ -69,6 +69,22 @@ body {
 
 }
 
+#settings {
+    text-align: center;
+    color: navy;
+}
+
+#optionContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
 #locationnName {
     color: purple;
+}
+
+.tempUnit {
+    cursor: pointer;
+
 }

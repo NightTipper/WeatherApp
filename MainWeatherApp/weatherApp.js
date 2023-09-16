@@ -11,8 +11,6 @@ function addStyles() {
 function submitWeather(event) {
    event.preventDefault()
    addStyles()
-
-
    if (searchedWeather === true) {
       let oldWeather = document.getElementsByClassName("individualWeatherContainer")
       while(oldWeather[0]) {
@@ -25,12 +23,14 @@ function submitWeather(event) {
    const apiKey = "619ffafbbae84d6baea75929231009";
    let weatherRequest = document.getElementById("weatherInput");
    let subLocation = weatherRequest.value;
-   console.log(subLocation)
    checkWeather(subLocation)
 };
 
 function checkWeather(subLocation) {
-   const api = "http://api.weatherapi.com/v1/forecast.json?key=619ffafbbae84d6baea75929231009&days=5";
+   let daysShown = 1;
+   daysShown = document.getElementById("days").value;
+
+   let api = "http://api.weatherapi.com/v1/forecast.json?key=619ffafbbae84d6baea75929231009&days=" + daysShown;
    let submittedLocation = api + "&q=" + subLocation;
    let request = new XMLHttpRequest();
 
@@ -57,7 +57,6 @@ function checkWeather(subLocation) {
 };
 
 
-// date - Convert to day of Date
 
 function populateData(data) {
 
@@ -67,10 +66,16 @@ function populateData(data) {
    let weatherTemp = document.createElement('p')
    let weatherImage = document.createElement('img')
 
-   //grab the data
    let weatherTempData = data.day.avgtemp_c;
+   //Determiner on temperature unit
+   if (document.getElementById('farenheit').checked) {
+      weatherTempData = data.day.avgtemp_f;
+   } else {
+   }
+   
+   //grab the data
+   
    let weatherImageData = data.day.condition.icon;
-
    //insert the data
    weatherTemp.innerHTML = weatherTempData;
    weatherImage.src = weatherImageData;
@@ -80,9 +85,4 @@ function populateData(data) {
    parentDiv.appendChild(initialDiv);
    initialDiv.appendChild(weatherTemp);
    initialDiv.appendChild(weatherImage);
-   
-
-
-   // document.getElementById("weatherTemp").innerHTML = data.current.temp_c + "℃";
-   // document.getElementById("weatherImage").src = data.current.condition.icon;
 };

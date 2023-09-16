@@ -21,6 +21,32 @@
             <h2 id=locationnName></h2>
             <div id="allWeatherContainer"></div>
         </div>
+
+        <div id="settings">
+            <h4> Options</h4>
+            <div id="optionContainer">
+                <div id="tempUnit">
+                    <h5>Select Temperature unit</h5>
+                    <input type="radio" checked="checked" name="temperatureUnit" id="celcius">
+                    <label class=""> ℃ </label>
+    
+                    <input type="radio" name="temperatureUnit" id="farenheit">
+                    <label class="checkmark"> ℉ </label>
+                </div>
+    
+                <div id="DaysShown">
+                    <h5>Show days: </h5>
+                    <select name="days" id="days">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- <footer>
         <a href="https://www.weatherapi.com/" title="Free Weather API"><img src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com" border="0"></a>
