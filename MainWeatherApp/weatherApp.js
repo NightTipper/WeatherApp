@@ -1,4 +1,4 @@
-import { apikey } from './config.js'
+import { apikey } from './config.js';
 
 const button = document.getElementById("submitButton");
 button.addEventListener("click", submitWeather, false);
@@ -32,7 +32,7 @@ function checkWeather(subLocation) {
    let daysShown = 1;
    daysShown = document.getElementById("days").value;
 
-   api = apikey + daysShown;
+   let api = apikey + daysShown;
    let submittedLocation = api + "&q=" + subLocation;
    let request = new XMLHttpRequest();
 
