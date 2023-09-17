@@ -1,3 +1,5 @@
+import { api } from './config.js'
+
 const button = document.getElementById("submitButton");
 button.addEventListener("click", submitWeather, false);
 
