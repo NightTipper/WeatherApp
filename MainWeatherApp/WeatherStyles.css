@@ -11,9 +11,15 @@
 }
 
 body {
+    background-color: navy;
+}
+
+.container {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     background-color: navy;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -69,7 +75,7 @@ body {
 }
 
 .individualWeatherContainer:hover {
-    background-color: black;
+    background-color: rgb(9, 34, 88);
 }
 
 #settings {
@@ -91,3 +97,16 @@ body {
     cursor: pointer;
 
 }
+
+/* 
+#additionalInfoContainer {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: rgb(57, 194, 194);
+    border: 5px solid rgb(57, 194, 194);
+    border-radius: 20px;
+    color: white;
+} */

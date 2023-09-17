@@ -46,7 +46,41 @@ function checkWeather(subLocation) {
          console.log(forcastData);
          document.getElementById("locationnName").innerHTML = subLocation;
          for (data of forcastData) {
-            populateData(data)
+
+            let parentDiv = document.getElementById("allWeatherContainer");
+            let initialDiv = document.createElement('div');
+            let weatherDay = document.createElement('h5');
+            let weatherTemp = document.createElement('p');
+            let weatherImage = document.createElement('img');
+            console.log(data)
+         
+         
+            let weatherTempData = data.day.avgtemp_c;
+            //Determiner on temperature unit
+            if (document.getElementById('farenheit').checked) {
+               weatherTempData = data.day.avgtemp_f;
+            };
+         
+            const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            //grab the data
+            let dayOfWeek = new Date(data.date);
+            let day = weekday[dayOfWeek.getDay()];
+            let weatherImageData = data.day.condition.icon;
+            let weatherImagetextData = data.day.condition.text;
+            weatherImage.alt = weatherImagetextData
+            
+            
+            //insert the data
+            weatherDay.innerHTML = day;
+            weatherTemp.innerHTML = weatherTempData;
+            weatherImage.src = weatherImageData;
+            
+            //append the children to the parent div
+            initialDiv.className='individualWeatherContainer';
+            parentDiv.appendChild(initialDiv);
+            initialDiv.appendChild(weatherDay);
+            initialDiv.appendChild(weatherTemp);
+            initialDiv.appendChild(weatherImage);
          }
 
       } else {
@@ -55,50 +89,48 @@ function checkWeather(subLocation) {
    }
 };
 
-function displayAdditional() {
-   console.log("hello")
-}
 
 
 
-function populateData(data) {
 
-   // Create the divs, and grab parent
-   let parentDiv = document.getElementById("allWeatherContainer");
-   let initialDiv = document.createElement('div');
-   let weatherDay = document.createElement('h5');
-   let weatherTemp = document.createElement('p');
-   let weatherImage = document.createElement('img');
+// function populateData(data) {
+
+//    // Create the divs, and grab parent
+//    let parentDiv = document.getElementById("allWeatherContainer");
+//    let initialDiv = document.createElement('div');
+//    let weatherDay = document.createElement('h5');
+//    let weatherTemp = document.createElement('p');
+//    let weatherImage = document.createElement('img');
+//    console.log(data[])
 
 
-   let weatherTempData = data.day.avgtemp_c;
-   //Determiner on temperature unit
-   if (document.getElementById('farenheit').checked) {
-      weatherTempData = data.day.avgtemp_f;
-   } else {
-   }
+//    let weatherTempData = data.day.avgtemp_c;
+//    //Determiner on temperature unit
+//    if (document.getElementById('farenheit').checked) {
+//       weatherTempData = data.day.avgtemp_f;
+//    };
 
-   const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-   //grab the data
-   let dayOfWeek = new Date(data.date);
-   let day = weekday[dayOfWeek.getDay()];
-   let weatherImageData = data.day.condition.icon;
-   let weatherImagetextData = data.day.condition.text;
-   weatherImage.alt = weatherImagetextData
+//    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+//    //grab the data
+//    let dayOfWeek = new Date(data.date);
+//    let day = weekday[dayOfWeek.getDay()];
+//    let weatherImageData = data.day.condition.icon;
+//    let weatherImagetextData = data.day.condition.text;
+//    weatherImage.alt = weatherImagetextData
    
    
-   //insert the data
-   weatherDay.innerHTML = day;
-   weatherTemp.innerHTML = weatherTempData;
-   weatherImage.src = weatherImageData;
+//    //insert the data
+//    weatherDay.innerHTML = day;
+//    weatherTemp.innerHTML = weatherTempData;
+//    weatherImage.src = weatherImageData;
    
-   //append to the children
-   initialDiv.className='individualWeatherContainer';
-   parentDiv.appendChild(initialDiv);
-   initialDiv.appendChild(weatherDay);
-   initialDiv.appendChild(weatherTemp);
-   initialDiv.appendChild(weatherImage);
-   initialDiv.addEventListener("click", displayAdditional)
-};
+//    //append to the children
+//    initialDiv.className='individualWeatherContainer';
+//    parentDiv.appendChild(initialDiv);
+//    initialDiv.appendChild(weatherDay);
+//    initialDiv.appendChild(weatherTemp);
+//    initialDiv.appendChild(weatherImage);
+//    initialDiv.addEventListener("click", displayAdditional)
+// };
 
 
